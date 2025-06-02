@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using TaskMate.Domain.Entities
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@inject TaskMate.Data.ApplicationDbContext DbContext
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -19,11 +25,27 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            var userId = UserManager.GetUserId(User);
+                            var devices = DbContext.Devices.Where(d => d.UserId == userId).ToList();
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="deviceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Devices
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="deviceDropdown">
+                                    @foreach (var device in devices)
+                                    {
+                                        <li><a class="dropdown-item" asp-controller="Planner" asp-action="Index" asp-route-deviceId="@device.DeviceId">@device.DeviceId</a></li>
+                                    }
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li><a class="dropdown-item" asp-controller="Device" asp-action="Add">+ Add Device</a></li>
+                                </ul>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -39,7 +61,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - TaskMate.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2025 - TaskMate.Web
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

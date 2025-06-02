@@ -1,0 +1,86 @@
+﻿@model List<TaskMate.Domain.Entities.Task>
+@{
+    ViewBag.Title = "Weekly Planner";
+    string[] days = Enum.GetNames(typeof(DayOfWeek));
+}
+
+<div class="container py-4">
+    <h1 class="text-center mb-4">Weekly Planner</h1>
+    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#taskModal" onclick="openModal()">+ Add Task</button>
+
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @for (int i = 0; i < 7; i++)
+        {
+            var tasksForDay = Model?.Where(t => (int)t.DayOfWeek == i).ToList() ?? new List<TaskMate.Domain.Entities.Task>();
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-header bg-primary text-white">@days[i]</div>
+                    <ul class="list-group list-group-flush">
+                        @foreach (var task in tasksForDay)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>@task.Name</span>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-primary me-1"
+                                            onclick="openModal(@task.Id, '@task.Name', @((int)task.DayOfWeek))">
+                                        Edit
+                                    </button>
+                                    <form method="post" asp-action="DeleteTask" class="d-inline">
+                                        <input type="hidden" name="id" value="@task.Id" />
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="taskModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="AddOrEditTask" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title">Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="taskId" />
+                    <div class="mb-3">
+                        <label class="form-label">Task Name</label>
+                        <input type="text" class="form-control" name="name" id="taskName" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Day</label>
+                        <select class="form-select" name="dayOfWeek" id="taskDay" required>
+                            @for (int i = 0; i < 7; i++)
+                            {
+                                <option value="@i">@days[i]</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function openModal(id = '', name = '', day = '') {
+            document.getElementById('taskId').value = id;
+            document.getElementById('taskName').value = name;
+            document.getElementById('taskDay').value = day;
+            var modal = new bootstrap.Modal(document.getElementById('taskModal'));
+            modal.show();
+        }
+    </script>
+}

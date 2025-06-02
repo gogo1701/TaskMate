@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35806.99 d17.13
+VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskMate.Web", "TaskMate.Web\TaskMate.Web.csproj", "{9528ADDA-A3D7-4ABC-97BE-A203E8C7CC0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskMate.Web", "TaskMate.Web\TaskMate.Web.csproj", "{9528ADDA-A3D7-4ABC-97BE-A203E8C7CC0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskMate.Data", "TaskMate.Data\TaskMate.Data.csproj", "{723BD183-CC6E-4BCF-B964-4D18E0332ADD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskMate.Data", "TaskMate.Data\TaskMate.Data.csproj", "{723BD183-CC6E-4BCF-B964-4D18E0332ADD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskMate.Domain", "TaskMate.Domain\TaskMate.Domain.csproj", "{684556CD-D901-4AE8-8068-1395D7A096EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskMate.Domain", "TaskMate.Domain\TaskMate.Domain.csproj", "{684556CD-D901-4AE8-8068-1395D7A096EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskMate.API", "TaskMate.API\TaskMate.API.csproj", "{7BB5129C-66B7-4155-A892-FF683EE0F140}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskMate.API", "TaskMate.API\TaskMate.API.csproj", "{7BB5129C-66B7-4155-A892-FF683EE0F140}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskMate.Logic", "TaskMate.Logic\TaskMate.Logic.csproj", "{BED75583-55F7-4EE5-BCBF-82419212CF85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{7BB5129C-66B7-4155-A892-FF683EE0F140}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BB5129C-66B7-4155-A892-FF683EE0F140}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BB5129C-66B7-4155-A892-FF683EE0F140}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BED75583-55F7-4EE5-BCBF-82419212CF85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BED75583-55F7-4EE5-BCBF-82419212CF85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BED75583-55F7-4EE5-BCBF-82419212CF85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BED75583-55F7-4EE5-BCBF-82419212CF85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

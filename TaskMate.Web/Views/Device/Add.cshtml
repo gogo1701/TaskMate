@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Add Device";
+}
+
+<h2>Add Device</h2>
+
+<form asp-action="Add" method="post" class="mt-3">
+    <div class="mb-3">
+        <label for="deviceId" class="form-label">Device ID</label>
+        <input type="text" class="form-control" id="deviceId" name="deviceId" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Add Device</button>
+</form>

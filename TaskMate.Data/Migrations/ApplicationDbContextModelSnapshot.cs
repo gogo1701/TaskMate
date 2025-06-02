@@ -251,6 +251,9 @@ namespace TaskMate.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("DayOfWeek")
+                        .HasColumnType("int");
+
                     b.Property<int>("DeviceId")
                         .HasColumnType("int");
 
